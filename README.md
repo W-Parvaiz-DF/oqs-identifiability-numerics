@@ -2,7 +2,7 @@
 
 Code for the numerical example (Sec. V, Figs. 1–2) of
 *Identifiability of Autonomous and Controlled Open Quantum Systems*
-(W. Parvaiz, J. Aspman, K. Wodecki, G. Korpas, J. Marecek), arXiv:2501.05270.
+(W. Parvaiz, J. Aspman, A. Wodecki, G. Korpas, J. Marecek), arXiv:2501.05270.
 
 
 Two coupled qubits with local decay, excitation and dephasing are probed with σx
