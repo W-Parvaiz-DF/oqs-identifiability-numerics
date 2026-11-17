@@ -139,7 +139,13 @@ def estimate_A(Zm, seq, levels):
         if len(idx) == 0:
             continue
         Z0, Z1 = Zm[:, idx], Zm[:, idx + 1]
-        Phi = I + (Z1 - Z0) @ np.linalg.pinv(Z0)                # min-norm update of the identity
+        # Least-squares one-step map. At full rank this equals Z1 @ pinv(Z0) (Eq. example_ls);
+        # below full rank it is the minimum-norm update of the identity, i.e. Phi = 1 on
+        # directions the data have not reached.
+        Phi = I + (Z1 - Z0) @ np.linalg.pinv(Z0)
+        # Principal matrix log. With noisy data Phi can have eigenvalues on the negative real
+        # axis; logm is then complex and we keep its real part (see Sec. V and
+        # log_branch_stats.py for how often this happens).
         estimates.append(logm(Phi).real / DT - (GEN[c] - A0))
     return np.mean(estimates, axis=0)
 
